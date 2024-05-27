@@ -1,42 +1,80 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     //nav
-    const hamburger = document.querySelector('#open-nav');
-    const closeIcon = document.querySelector('#close-nav');
-    const itemWrapper = document.querySelector('.hidden');
-    const overlay = document.querySelector('.middle');
+    const hamburger = document.querySelector('#open-nav')
+    const closeIcon = document.querySelector('#close-nav')
+    const itemWrapper = document.querySelector('.hidden')
+    const overlay = document.querySelector('.middle')
     
     function toggleMenu() {
         if (itemWrapper.style.right === '0px') {
-            itemWrapper.style.right = '-100%';
-            overlay.style.display = 'none';
+            itemWrapper.style.right = '-100%'
+            overlay.style.display = 'none'
         } else {
-            itemWrapper.style.right = '0';
-            overlay.style.display = 'block';
+            itemWrapper.style.right = '0'
+            overlay.style.display = 'block'
         }
     }
     
-    hamburger.addEventListener('click', toggleMenu);
-    closeIcon.addEventListener('click', toggleMenu);
-    overlay.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('click', toggleMenu)
+    closeIcon.addEventListener('click', toggleMenu)
+    overlay.addEventListener('click', toggleMenu)
 
 
     //toggle weekly
-    const toggleForecast = document.getElementById('box-toggle-week-hour');
-    const weeklyForecast = document.querySelector('.forecast-content-wrapper-week');
-    const hourlyForecast = document.querySelector('.forecast-wrapper-hour');
+    const toggleForecast = document.getElementById('box-toggle-week-hour')
+    const weeklyForecast = document.querySelector('.forecast-content-wrapper-week')
+    const hourlyForecast = document.querySelector('.forecast-wrapper-hour')
 
     function updateForecastDisplay() {
         if (toggleForecast.checked) {
-            weeklyForecast.style.display = 'flex';
-            hourlyForecast.style.display = 'none';
+            weeklyForecast.style.display = 'flex'
+            hourlyForecast.style.display = 'none'
         } else {
-            weeklyForecast.style.display = 'none';
-            hourlyForecast.style.display = 'block';
+            weeklyForecast.style.display = 'none'
+            hourlyForecast.style.display = 'block'
         }
     }
 
-    toggleForecast.addEventListener('change', updateForecastDisplay);
+    toggleForecast.addEventListener('change', updateForecastDisplay)
+
+    //manual serach
+    document.getElementById('city-input').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+          const cityName = event.target.value;
+          if (cityName) {
+            fetchLatLon(cityName)
+              .then(coords => {
+                return fetchWeatherData(coords.lat, coords.lon)
+              })
+              .then(weatherData => {
+                updateDOM(weatherData)
+              })
+              .catch(error => {
+                console.error(error.message)
+              })
+          }
+        }
+    })
+
+    function fetchLatLon(cityName) {
+        const apiKey = 'b2814d1737d86d29cc66676988cbd1a4';
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+      
+        return fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            return {
+              lat: data.coord.lat,
+              lon: data.coord.lon
+            };
+          });
+      }
 
 
     //weather logic
@@ -45,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(){
     function getCurrentPosition() {
         return new Promise((resolve, reject) => {
           if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(resolve, reject);
+            navigator.geolocation.getCurrentPosition(resolve, reject)
           } else {
             reject(new Error("Geolocation is not supported by this browser."))
           }
@@ -143,4 +181,4 @@ document.addEventListener("DOMContentLoaded", function(){
         .catch(error => {
           console.error(error.message)
         })
-    })
+})
