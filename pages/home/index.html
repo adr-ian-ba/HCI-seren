@@ -14,20 +14,16 @@
             </div>
     
             <div class="input-wrapper">
-                <input type="text" placeholder="search for your preferd city">
+                <input type="text" placeholder="search for your preferred city">
             </div>
     
             <div class="link-wrapper">
                 <ul>
                     <a href="">
-                        <li>
-                            Home
-                        </li>
+                        <li>Home</li>
                     </a>
                     <a href="">
-                        <li>
-                            Article
-                        </li>
+                        <li>Article</li>
                     </a>
                 </ul>
             </div>
@@ -44,7 +40,7 @@
                 </div>
 
                 <div class="input-wrapper">
-                    <input type="text" placeholder="search for your preferd city">
+                    <input type="text" placeholder="search for your preferred city">
                     
                     <div class="burger-wrapper" id="open-nav">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -62,20 +58,15 @@
                     <img src="../../assets/SkyNerd logo.png" alt="">
                 </div>
 
-                <div class="conternt-inner-wrapper">
-
+                <div class="content-inner-wrapper">
                     <div class="link-wrapper">
                         <div class="link">
                             <ul>
                                 <a href="">
-                                    <li>
-                                        Home
-                                    </li>
+                                    <li>Home</li>
                                 </a>
                                 <a href="">
-                                    <li>
-                                        Article
-                                    </li>
+                                    <li>Article</li>
                                 </a>
                             </ul>
                         </div>
@@ -85,21 +76,131 @@
                         <p>Test Hello</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </nav>
 
     <section class="location">
         <h1>Weather Forecast</h1>
-        <h5>Jakarta, Indonesia</h5>
+        <h5 id="location-name">Jakarta, Indonesia</h5>
     </section>
 
     <section class="highlight">
         <div class="highlight-content-wrapper">
-            <h2>Todays Highlight</h2>
+            <h2>Today's Highlight</h2>
+
+            <div class="sun-information">
+                <div class="info">
+                    <div class="img-wrapper">
+                        <img src="../../assets/highlight/sunrise.png" alt="">
+                    </div>
+                    <div class="info-wrapper">
+                        <p><b>Sunrise</b></p>
+                        <p id="sunrise-time">xx.xx pm</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <div class="img-wrapper">
+                        <img src="../../assets/highlight/sunrise.png" alt="">
+                    </div>
+                    <div class="info-wrapper">
+                        <p><b>Sunset</b></p>
+                        <p id="sunset-time">xx.xx pm</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="additional">
+                <div class="info">
+                    <img src="../../assets/highlight/uv.png" alt="">
+                    <p id="uv-index">x</p>
+                    <p><b>UV Index</b></p>
+                </div>
+                <div class="info">
+                    <img src="../../assets/highlight/wind.png" alt="">
+                    <p id="wind-speed">x</p>
+                    <p><b>Wind Speed</b></p>
+                </div>
+                <div class="info">
+                    <img src="../../assets/highlight/pressure.png" alt="">
+                    <p id="pressure">x</p>
+                    <p><b>Pressure</b></p>
+                </div>
+                <div class="info">
+                    <img src="../../assets/highlight/humidity.png" alt="">
+                    <p id="humidity">x</p>
+                    <p><b>Humidity</b></p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <section class="forecast-outer">
+        <h5>Toggle Daily</h5>
+        <div class="wrapper">
+            <input type="checkbox" class="checkbox" id="box-toggle-week-hour" />
+            <label for="box-toggle-week-hour"></label>
+        </div>
+
+        <section class="forecast">
+            <div class="forecast-content-wrapper-week" id="forecast-week">
+                <!-- Forecast  -->
+            </div>
+
+            <div class="forecast-wrapper-hour">
+                <div class="am" id="forecast-hour-am">
+                    <!-- forecast -->
+                </div>
+
+                <div class="pm" id="forecast-hour-pm">
+                    <!-- forecast -->
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <div class="top">
+            <div class="about">
+                <img src="../../assets/SkyNerd logo.png" alt="">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A neque quis expedita ipsam officiis. Dolorum nisi eaque illum! Autem tenetur eius quo dolores. Quam, obcaecati?</p>
+            </div>
+    
+            <div class="newsletter">
+                <h3>Email Newsletter</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto voluptate, quos mollitia dolorum ratione beatae.</p>
+                <input type="text" placeholder="Enter Your Email">
+                <button>Subscribe</button>
+            </div>
+
+            <div class="link">
+                <h3>Site Links</h3>
+                <ul>
+                    <a href="">
+                        <li>Help & support</li>
+                    </a>
+                    <a href="">
+                        <li>Help & support</li>
+                    </a>
+                    <a href="">
+                        <li>Help & support</li>
+                    </a>
+                </ul>
+            </div>
+
+            <div class="social">
+                <h3>Social Media</h3>
+                <div class="social-icon">
+                    <p>tes</p>
+                    <p>tes</p>
+                    <p>tes</p>
+                    <p>tes</p>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">Copyright © SkyNerd, All Rights Reserved 2024</p>
+    </footer>
     
     <script src="../../script.js"></script>
 </body>
