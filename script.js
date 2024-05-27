@@ -40,33 +40,43 @@ document.addEventListener("DOMContentLoaded", function(){
 
     //manual serach
     document.getElementById('city-input').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-          const cityName = event.target.value;
-          if (cityName) {
-            fetchLatLon(cityName)
-              .then(coords => {
-                return fetchWeatherData(coords.lat, coords.lon)
-              })
-              .then(weatherData => {
-                updateDOM(weatherData)
-              })
-              .catch(error => {
-                console.error(error.message)
-              })
-          }
+      if (event.key === 'Enter') {
+        const cityName = event.target.value.trim()
+        if (cityName) {
+          window.location.href = `../world/index.html?city=${cityName}`
         }
-    })
+      }
+    });
+
+    const city = getQueryParam('city');
+    if (city) {
+      fetchLatLon(city)
+        .then(coords => {
+          return fetchWeatherData(coords.lat, coords.lon)
+        })
+        .then(weatherData => {
+          updateDOM(weatherData)
+        })
+        .catch(error => {
+          console.error(error.message)
+        });
+    }
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search)
+      return urlParams.get(param)
+    }
 
     function fetchLatLon(cityName) {
-        const apiKey = 'b2814d1737d86d29cc66676988cbd1a4';
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+        const apiKey = 'b2814d1737d86d29cc66676988cbd1a4'
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
       
         return fetch(apiUrl)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              throw new Error('Network response was not ok')
             }
-            return response.json();
+            return response.json()
           })
           .then(data => {
             return {
@@ -105,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return fetch(apiUrl)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              throw new Error('Network response was not ok')
             }
             return response.json()
           })
